@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1060" viewBox="0 0 1440 1060" role="img" aria-labelledby="title desc">
+  <title id="title">Arquitetura de venda justa de ingressos em alta demanda</title>
+  <desc id="desc">Diagrama com waiting room, sorteio de posições entre participantes pré-inscritos, fila controlada, reserva atômica de estoque, pagamento e confirmação.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#526581"/></marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#138a67"/></marker>
+    <style>
+      text{font-family:Inter,Segoe UI,Arial,sans-serif;fill:#172b4d}.title{font-size:30px;font-weight:750}.subtitle{font-size:16px;fill:#526581}.boxTitle{font-size:19px;font-weight:700}.body{font-size:15px}.small{font-size:13px;fill:#526581}.tag{font-size:12px;font-weight:700;letter-spacing:.5px}.card{fill:#fff;stroke:#cbd5e1;stroke-width:2}.line{fill:none;stroke:#526581;stroke-width:3;marker-end:url(#arrow)}.goodline{fill:none;stroke:#138a67;stroke-width:3;marker-end:url(#arrowGreen)}
+    </style>
+  </defs>
+  <rect width="1440" height="1060" fill="#f5f8fc"/>
+  <text x="56" y="64" class="title">Venda justa de ingressos em alta demanda</text>
+  <text x="56" y="96" class="subtitle">Escala horizontal para absorver picos; fila imparcial e estoque consistente para nunca vender além do disponível.</text>
+  <rect x="56" y="124" width="1328" height="54" rx="12" fill="#e9f1fb"/>
+  <text x="78" y="157" class="tag" fill="#2459a6">PRINCÍPIO DE JUSTIÇA</text>
+  <text x="260" y="157" class="body">Inscrição antes da abertura + sorteio público de posições no horário anunciado: a velocidade de conexão não define quem fica na frente.</text>
+
+  <rect x="56" y="260" width="235" height="300" rx="16" class="card"/>
+  <rect x="56" y="260" width="235" height="48" rx="16" fill="#eaf2ff"/>
+  <text x="76" y="291" class="boxTitle">Público</text>
+  <text x="76" y="345" class="body"><tspan x="76" dy="0">Navegador / app</tspan><tspan x="76" dy="27">Uma inscrição por</tspan><tspan x="76" dy="22">pessoa verificada</tspan><tspan x="76" dy="38">Recebe posição e</tspan><tspan x="76" dy="22">atualizações da fila</tspan><tspan x="76" dy="38">Token de acesso</tspan><tspan x="76" dy="22">assinado e pessoal</tspan></text>
+  <text x="76" y="532" class="small">Sem vantagem por atualizar a página</text>
+
+  <rect x="340" y="260" width="260" height="300" rx="16" class="card"/>
+  <rect x="340" y="260" width="260" height="48" rx="16" fill="#e9f7f2"/>
+  <text x="360" y="291" class="boxTitle">Borda / CDN</text>
+  <text x="360" y="345" class="body"><tspan x="360" dy="0">CDN + proteção DDoS</tspan><tspan x="360" dy="27">WAF / bot mitigation</tspan><tspan x="360" dy="38">Waiting room estática</tspan><tspan x="360" dy="22">absorve tráfego massivo</tspan><tspan x="360" dy="38">Limites por identidade</tspan><tspan x="360" dy="22">e por origem</tspan></text>
+  <text x="360" y="532" class="small">Serviços stateless, replicados</text>
+
+  <rect x="650" y="220" width="360" height="380" rx="16" class="card"/>
+  <rect x="650" y="220" width="360" height="52" rx="16" fill="#fff4df"/>
+  <text x="672" y="254" class="boxTitle">Coordenador da fila</text>
+  <text x="672" y="304" class="body"><tspan x="672" dy="0">1. Inscrições ficam abertas antes</tspan><tspan x="692" dy="22">da venda, sem corrida de cliques.</tspan><tspan x="672" dy="35">2. No horário anunciado, sorteia</tspan><tspan x="692" dy="22">ordem entre inscritos elegíveis.</tspan><tspan x="672" dy="35">3. Fila durável, posição imutável</tspan><tspan x="692" dy="22">e token assinado contra fraude.</tspan><tspan x="672" dy="35">4. Admite em lotes conforme a</tspan><tspan x="692" dy="22">capacidade do serviço de venda.</tspan></text>
+  <rect x="672" y="548" width="316" height="32" rx="8" fill="#fff4df"/>
+  <text x="686" y="569" class="small">Autoscaling + backpressure; não sobrecarrega a venda</text>
+
+  <rect x="1060" y="220" width="324" height="380" rx="16" class="card"/>
+  <rect x="1060" y="220" width="324" height="52" rx="16" fill="#f0eaff"/>
+  <text x="1082" y="254" class="boxTitle">Venda e reserva</text>
+  <text x="1082" y="304" class="body"><tspan x="1082" dy="0">API escalável valida token</tspan><tspan x="1082" dy="27">e idempotency key.</tspan><tspan x="1082" dy="38">Reserva transacional atômica:</tspan><tspan x="1082" dy="23">só confirma se estoque &gt; 0.</tspan><tspan x="1082" dy="38">Limite de ingressos por pessoa.</tspan><tspan x="1082" dy="38">Reserva expira se o pagamento</tspan><tspan x="1082" dy="23">não concluir; estoque é liberado.</tspan></text>
+  <text x="1082" y="570" class="small">Sem estoque disponível: não cobra e informa.</text>
+
+  <path d="M291 410 H332" class="line"/>
+  <path d="M600 410 H642" class="line"/>
+  <path d="M1010 410 H1052" class="line"/>
+  <text x="300" y="394" class="small">HTTPS</text>
+  <text x="608" y="394" class="small">inscrição</text>
+  <text x="1014" y="394" class="small">admissão</text>
+
+  <rect x="1060" y="690" width="324" height="190" rx="16" fill="#eef9f4" stroke="#80c9ae" stroke-width="2"/>
+  <text x="1082" y="727" class="boxTitle">Estoque autoritativo</text>
+  <text x="1082" y="762" class="body"><tspan x="1082" dy="0">Banco transacional fortemente</tspan><tspan x="1082" dy="22">consistente; atualização condicional</tspan><tspan x="1082" dy="22">e registro único por ingresso.</tspan></text>
+  <rect x="1082" y="827" width="280" height="34" rx="8" fill="#d9f2e8"/>
+  <text x="1094" y="849" class="tag" fill="#08724f">INVARIANTE: vendidos ≤ disponíveis</text>
+  <path d="M1222 600 V682" class="goodline"/>
+  <text x="1234" y="646" class="small">reserva atômica</text>
+
+  <rect x="650" y="720" width="330" height="160" rx="16" class="card"/>
+  <rect x="650" y="720" width="330" height="46" rx="16" fill="#e9f1fb"/>
+  <text x="672" y="750" class="boxTitle">Pagamento</text>
+  <text x="672" y="802" class="body"><tspan x="672" dy="0">Gateway externo autoriza/captura.</tspan><tspan x="672" dy="24">Confirma pedido ou libera reserva</tspan><tspan x="672" dy="22">ao expirar / falhar.</tspan></text>
+  <path d="M1052 810 H988" class="line"/>
+  <text x="995" y="794" class="small">reserva</text>
+
+  <rect x="300" y="720" width="280" height="160" rx="16" class="card"/>
+  <rect x="300" y="720" width="280" height="46" rx="16" fill="#e9f7f2"/>
+  <text x="322" y="750" class="boxTitle">Pedido confirmado</text>
+  <text x="322" y="802" class="body"><tspan x="322" dy="0">Emissão do ingresso digital</tspan><tspan x="322" dy="24">e envio de comprovante.</tspan><tspan x="322" dy="28">Notificações assíncronas.</tspan></text>
+  <path d="M642 800 H588" class="goodline"/>
+  <text x="594" y="784" class="small">pagamento ok</text>
+
+  <rect x="56" y="930" width="1328" height="74" rx="14" fill="#172b4d"/>
+  <text x="80" y="961" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="15" font-weight="700" fill="#ffffff">Disponibilidade e recuperação</text>
+  <text x="80" y="986" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="14" fill="#e5edf8">Múltiplas zonas + autoscaling • fila durável • operações idempotentes • métricas e alertas • falha no pagamento libera a reserva após timeout.</text>
+</svg>
